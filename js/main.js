@@ -9,7 +9,7 @@ const productos = [
             nombre: "Abrigos",
             id: "abrigos"
         },
-        precio: 1000
+        precio: 10400
     },
     {
         id: "abrigo-02",
@@ -19,7 +19,7 @@ const productos = [
             nombre: "Abrigos",
             id: "abrigos"
         },
-        precio: 1000
+        precio: 12600
     },
     {
         id: "abrigo-03",
@@ -29,7 +29,7 @@ const productos = [
             nombre: "Abrigos",
             id: "abrigos"
         },
-        precio: 1000
+        precio: 13455
     },
     {
         id: "abrigo-04",
@@ -39,7 +39,7 @@ const productos = [
             nombre: "Abrigos",
             id: "abrigos"
         },
-        precio: 1000
+        precio: 11000
     },
     {
         id: "abrigo-05",
@@ -49,7 +49,7 @@ const productos = [
             nombre: "Abrigos",
             id: "abrigos"
         },
-        precio: 1000
+        precio: 8240
     },
     // Camisetas
     {
@@ -60,7 +60,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 6700
     },
     {
         id: "camiseta-02",
@@ -70,7 +70,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 6500
     },
     {
         id: "camiseta-03",
@@ -80,7 +80,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 6500
     },
     {
         id: "camiseta-04",
@@ -90,7 +90,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 5900
     },
     {
         id: "camiseta-05",
@@ -100,7 +100,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 5900
     },
     {
         id: "camiseta-06",
@@ -110,7 +110,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 5900
     },
     {
         id: "camiseta-07",
@@ -120,7 +120,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 5900
     },
     {
         id: "camiseta-08",
@@ -130,7 +130,7 @@ const productos = [
             nombre: "Camisetas",
             id: "camisetas"
         },
-        precio: 1000
+        precio: 5900
     },
     // Pantalones
     {
@@ -141,7 +141,7 @@ const productos = [
             nombre: "Pantalones",
             id: "pantalones"
         },
-        precio: 1000
+        precio: 15000
     },
     {
         id: "pantalon-02",
@@ -151,7 +151,7 @@ const productos = [
             nombre: "Pantalones",
             id: "pantalones"
         },
-        precio: 1000
+        precio: 13890
     },
     {
         id: "pantalon-03",
@@ -161,7 +161,7 @@ const productos = [
             nombre: "Pantalones",
             id: "pantalones"
         },
-        precio: 1000
+        precio: 9500
     },
     {
         id: "pantalon-04",
@@ -171,7 +171,7 @@ const productos = [
             nombre: "Pantalones",
             id: "pantalones"
         },
-        precio: 1000
+        precio: 10500
     },
     {
         id: "pantalon-05",
@@ -181,7 +181,7 @@ const productos = [
             nombre: "Pantalones",
             id: "pantalones"
         },
-        precio: 1000
+        precio: 10500
     }
 ];
 
@@ -258,8 +258,20 @@ function actualizarBotonesAgregar() {
     })
 }
 
-//Creo el array donde estaran los productos del carrito
-const productosEnCarrito = [];
+
+
+let productosEnCarrito;
+
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito")
+
+if (productosEnCarritoLS) {
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito();
+}
+else {
+    productosEnCarrito = [];
+}
+
 
 
 //Creo la funcion que agrega los productos al carrito
@@ -284,6 +296,8 @@ function agregarAlCarrito(e) {
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
 };
+
+
 
 //Funcion para actualizar el numero de productos en el carrito
 function actualizarNumerito() {
