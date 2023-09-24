@@ -82,6 +82,8 @@ function actualizarBotonesEliminar() {
 
 //eliminamos del carrito con el boton
 function eliminarDelCarrito(e) {
+
+
     let idBoton = e.currentTarget.id;
 
     const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
@@ -98,9 +100,21 @@ botonVaciar.addEventListener("click", vaciarCarrito)
 
 //vaciamos el carrito con el boton
 function vaciarCarrito() {
-    productosEnCarrito.length = 0;
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-    cargarProductosCarrito();
+    Swal.fire({
+        title: '¿Estás seguro?',
+        icon: 'question',
+        html: `Se van a borrar ${productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} productos.`,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            productosEnCarrito.length = 0;
+            localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+            cargarProductosCarrito();
+        }
+    })
 }
 
 
